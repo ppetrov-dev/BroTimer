@@ -1,0 +1,27 @@
+{
+  "name": "MyTimer",
+  "keywords": "timer",
+  "description": "Useful Arduino Library for creating C# style timers",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/ppetrov-dev/MyTimer.git"
+  },
+  "authors": 
+  [
+    {
+      "name": "Pavel Petrov",
+      "email": "ppetrov-dev@hotmail.com",
+      "url": "http://www.ppetrov.dev",
+      "maintainer": true
+    }
+  ],
+  "dependencies":
+  {
+    "name": "Arduino",
+    "frameworks": "arduino"
+  },
+  "version": "1.0.0",
+  "frameworks": "arduino",
+  "platforms": "*"
+}

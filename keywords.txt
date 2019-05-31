@@ -1,0 +1,24 @@
+#######################################
+# Syntax Coloring Map For MyTimer
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+MyTimer	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+SetInterval	KEYWORD2
+Start	KEYWORD2
+Stop	KEYWORD2
+AttachOnTick	KEYWORD2
+Tick	KEYWORD2
+
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
