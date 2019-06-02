@@ -14,7 +14,7 @@ void MyTimer::Stop()
 	_isStarted = false;
 	_timeInMilliseconds = 0;
 }
-void MyTimer::AttachOnTick(timerCallback callback)
+void MyTimer::AttachOnTick(myTimerCallback callback)
 {
 	_onTickCallback = callback;
 }
