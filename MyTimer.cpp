@@ -2,8 +2,15 @@
 
 void MyTimer::SetInterval(unsigned long intervalInMilliseconds)
 {
-	_intervalInMilliseconds = intervalInMilliseconds;
+	SetInterval(intervalInMilliseconds, intervalInMilliseconds);
 }
+
+void MyTimer::SetInterval(unsigned long waitTimeoutInMilliseconds, unsigned long workTimeoutInMilliseconds)
+{
+	_waitIntervalInMilliseconds = waitTimeoutInMilliseconds;
+	_workIntervalInMilliseconds = workTimeoutInMilliseconds;
+}
+
 void MyTimer::Start()
 {
 	_timeInMilliseconds = millis();
@@ -14,20 +21,22 @@ void MyTimer::Stop()
 	_isStarted = false;
 	_timeInMilliseconds = 0;
 }
-void MyTimer::AttachOnTick(myTimerCallback callback)
+void MyTimer::AttachOnElapsed(myTimerCallback callback)
 {
-	_onTickCallback = callback;
+	_onTimerElapsedCallback = callback;
 }
 void MyTimer::Tick()
 {
-	if (!_isStarted || !_onTickCallback)
+	if (!_isStarted || !_onTimerElapsedCallback)
 		return;
 
 	auto currentMilliseconds = millis();
 
-	if (currentMilliseconds < _timeInMilliseconds + _intervalInMilliseconds)
+	auto intervalInMilliseconds = (_isWorking ? _workIntervalInMilliseconds : _waitIntervalInMilliseconds);
+	if (currentMilliseconds < _timeInMilliseconds + intervalInMilliseconds)
 		return;
 
 	_timeInMilliseconds = currentMilliseconds;
-	_onTickCallback();
+	_isWorking = !_isWorking;
+	_onTimerElapsedCallback();
 }
