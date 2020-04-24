@@ -12,18 +12,19 @@ class MyTimer
 private:
 	myTimerCallback _onTimerElapsedCallback;
 	bool _isStarted = false;
-	bool _isWorking = false;
-	unsigned long _timeInMilliseconds = 0;
-	unsigned long _workIntervalInMilliseconds = 1000;
-	unsigned long _waitIntervalInMilliseconds = 1000;
+	bool _isWorkInterval = false;
+	unsigned long _lastTimestamp = 0;
+	unsigned long _workInterval = 1000;
+	unsigned long _waitInterval = 1000;
 
 public:
-	void SetInterval(unsigned long timeoutInMilliseconds);
-	void SetInterval(unsigned long waitTimeoutInMilliseconds, unsigned long workTimeoutInMilliseconds);
+	void SetInterval(unsigned long intervalInMilliseconds);
+	void SetInterval(unsigned long waitIntervalInMilliseconds, unsigned long workIntervalInMilliseconds);
 	void Start();
 	void Stop();
 	void AttachOnElapsed(myTimerCallback callback);
 	void Tick();
+	bool GetIsWorkInterval();
 };
 
 #endif // myTimerH

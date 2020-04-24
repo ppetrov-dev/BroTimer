@@ -5,38 +5,41 @@ void MyTimer::SetInterval(unsigned long intervalInMilliseconds)
 	SetInterval(intervalInMilliseconds, intervalInMilliseconds);
 }
 
-void MyTimer::SetInterval(unsigned long waitTimeoutInMilliseconds, unsigned long workTimeoutInMilliseconds)
+void MyTimer::SetInterval(unsigned long waitIntervalInMilliseconds, unsigned long workIntervalInMilliseconds)
 {
-	_waitIntervalInMilliseconds = waitTimeoutInMilliseconds;
-	_workIntervalInMilliseconds = workTimeoutInMilliseconds;
+	_waitInterval = waitIntervalInMilliseconds;
+	_workInterval = workIntervalInMilliseconds;
 }
 
 void MyTimer::Start()
 {
-	_timeInMilliseconds = millis();
+	_lastTimestamp = millis();
 	_isStarted = true;
 }
 void MyTimer::Stop()
 {
 	_isStarted = false;
-	_timeInMilliseconds = 0;
+	_lastTimestamp = 0;
 }
 void MyTimer::AttachOnElapsed(myTimerCallback callback)
 {
 	_onTimerElapsedCallback = callback;
+}
+bool MyTimer::GetIsWorkInterval()
+{
+	return _isWorkInterval;
 }
 void MyTimer::Tick()
 {
 	if (!_isStarted || !_onTimerElapsedCallback)
 		return;
 
-	auto currentMilliseconds = millis();
-
-	auto intervalInMilliseconds = (_isWorking ? _workIntervalInMilliseconds : _waitIntervalInMilliseconds);
-	if (currentMilliseconds < _timeInMilliseconds + intervalInMilliseconds)
+	register auto currentTimeStamp = millis();
+	register auto interval = (_isWorkInterval ? _workInterval : _waitInterval);
+	if (currentTimeStamp < _lastTimestamp + interval)
 		return;
 
-	_timeInMilliseconds = currentMilliseconds;
-	_isWorking = !_isWorking;
+	_lastTimestamp = currentTimeStamp;
+	_isWorkInterval = !_isWorkInterval;
 	_onTimerElapsedCallback();
 }
