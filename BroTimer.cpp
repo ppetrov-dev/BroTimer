@@ -1,35 +1,35 @@
-#include "MyTimer.h"
+#include "BroTimer.h"
 
-void MyTimer::SetInterval(unsigned long intervalInMilliseconds)
+void BroTimer::SetInterval(unsigned long intervalInMilliseconds)
 {
 	SetInterval(intervalInMilliseconds, intervalInMilliseconds);
 }
 
-void MyTimer::SetInterval(unsigned long waitIntervalInMilliseconds, unsigned long workIntervalInMilliseconds)
+void BroTimer::SetInterval(unsigned long waitIntervalInMilliseconds, unsigned long workIntervalInMilliseconds)
 {
 	_waitInterval = waitIntervalInMilliseconds;
 	_workInterval = workIntervalInMilliseconds;
 }
 
-void MyTimer::Start()
+void BroTimer::Start()
 {
 	_lastTimestamp = millis();
 	_isStarted = true;
 }
-void MyTimer::Stop()
+void BroTimer::Stop()
 {
 	_isStarted = false;
 	_lastTimestamp = 0;
 }
-void MyTimer::AttachOnElapsed(myTimerCallback callback)
+void BroTimer::AttachOnElapsed(callback callback)
 {
 	_onTimerElapsedCallback = callback;
 }
-bool MyTimer::GetIsWorkInterval()
+bool BroTimer::GetIsWorkInterval()
 {
 	return _isWorkInterval;
 }
-void MyTimer::Tick()
+void BroTimer::Tick()
 {
 	if (!_isStarted || !_onTimerElapsedCallback)
 		return;

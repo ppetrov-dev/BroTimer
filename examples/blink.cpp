@@ -1,7 +1,7 @@
 #include <Arduino.h>
-#include <MyTimer.h>
+#include <BroTimer.h>
 
-MyTimer *timer = new MyTimer();
+BroTimer *timer = new BroTimer();
 bool _isOn = false;
 void OnTimerElapsed()
 {

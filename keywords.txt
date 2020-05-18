@@ -1,11 +1,11 @@
 #######################################
-# Syntax Coloring Map For MyTimer
+# Syntax Coloring Map For BroTimer
 #######################################
 
 #######################################
 # Datatypes (KEYWORD1)
 #######################################
-MyTimer	KEYWORD1
+BroTimer	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
@@ -14,9 +14,9 @@ MyTimer	KEYWORD1
 SetInterval	KEYWORD2
 Start	KEYWORD2
 Stop	KEYWORD2
-AttachOnTick	KEYWORD2
+AttachOnElapsed	KEYWORD2
 Tick	KEYWORD2
-
+GetIsWorkInterval	KEYWORD2
 
 #######################################
 # Constants (LITERAL1)

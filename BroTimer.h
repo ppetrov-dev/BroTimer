@@ -1,16 +1,16 @@
-#ifndef myTimerH
-#define myTimerH
+#ifndef broTimerH
+#define broTimerH
 #include <Arduino.h>
 
 extern "C"
 {
-	typedef void (*myTimerCallback)(void);
+	typedef void (*callback)(void);
 }
 
-class MyTimer
+class BroTimer
 {
 private:
-	myTimerCallback _onTimerElapsedCallback;
+	callback _onTimerElapsedCallback;
 	bool _isStarted = false;
 	bool _isWorkInterval = false;
 	unsigned long _lastTimestamp = 0;
@@ -27,4 +27,4 @@ public:
 	bool GetIsWorkInterval();
 };
 
-#endif // myTimerH
+#endif // broTimerH
