@@ -21,9 +21,9 @@ void BroTimer::Stop()
 	_isStarted = false;
 	_lastTimestamp = 0;
 }
-void BroTimer::AttachOnElapsed(callback callback)
+void BroTimer::AttachOnElapsed(void (*newFunction)())
 {
-	_onTimerElapsedCallback = callback;
+	_onTimerElapsedCallbackFunc = newFunction;
 }
 bool BroTimer::GetIsWorkInterval()
 {
@@ -31,7 +31,7 @@ bool BroTimer::GetIsWorkInterval()
 }
 void BroTimer::Tick()
 {
-	if (!_isStarted || !_onTimerElapsedCallback)
+	if (!_isStarted || !_onTimerElapsedCallbackFunc)
 		return;
 
 	register auto currentTimeStamp = millis();
@@ -41,5 +41,5 @@ void BroTimer::Tick()
 
 	_lastTimestamp = currentTimeStamp;
 	_isWorkInterval = !_isWorkInterval;
-	_onTimerElapsedCallback();
+	_onTimerElapsedCallbackFunc();
 }

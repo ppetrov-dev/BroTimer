@@ -2,15 +2,10 @@
 #define broTimerH
 #include <Arduino.h>
 
-extern "C"
-{
-	typedef void (*callback)(void);
-}
-
 class BroTimer
 {
 private:
-	callback _onTimerElapsedCallback;
+	void (*_onTimerElapsedCallbackFunc)() = nullptr;
 	bool _isStarted = false;
 	bool _isWorkInterval = false;
 	unsigned long _lastTimestamp = 0;
@@ -22,7 +17,7 @@ public:
 	void SetInterval(unsigned long waitIntervalInMilliseconds, unsigned long workIntervalInMilliseconds);
 	void Start();
 	void Stop();
-	void AttachOnElapsed(myTimerCallback callback);
+	void AttachOnElapsed(void (*newFunction)());
 	void Tick();
 	bool GetIsWorkInterval();
 };
